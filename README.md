@@ -1,4 +1,4 @@
 Lambda.js
 =========
 
-C# Lambda Expressions in Query, Operations in JavaScript.
+"C# Lambda Expressions in Query" in JavaScript.
