@@ -75,6 +75,9 @@
       return arr;
       
     },
+    _where: function(query) {
+      
+    },
     _getActions: function() {
       var me = this;
       return {
