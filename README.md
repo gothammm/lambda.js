@@ -40,3 +40,18 @@ Usage
  //Output
  // [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" }];
 ```
+
+**Where**
+```js
+ var array = [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" }, 
+ { "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }, 
+ { "FirstName": "David", "LastName": "Ken", "Age": 25, "State": "NY" }, 
+ { "FirstName": "Hugo", "LastName": "Boss", "Age": 25, "State": "NY" }];
+ 
+ var selectedArr = lambda.where({ Age: 25 });
+ 
+ //Output
+ // [{ "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }, 
+ // { "FirstName": "David", "LastName": "Ken", "Age": 25, "State": "NY" }, 
+ // { "FirstName": "Hugo", "LastName": "Boss", "Age": 25, "State": "NY" }];
+```
