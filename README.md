@@ -15,6 +15,12 @@ Include the `lambda.js` to your page.
 <script src="src/lambda.js"></script>
 ```
 
+TODO
+---------------
+**Where**
+ - support "or", "and" operations.
+ - support "like" operation.
+
 
 Usage
 ---------------
