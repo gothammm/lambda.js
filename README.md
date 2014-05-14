@@ -32,7 +32,8 @@ Usage
  
 **First**
 ```js
- var array = [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" }, { "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }];
+ var array = [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" }, 
+ { "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }];
  
  var selectedArr = lambda.first(arr);
  
