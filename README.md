@@ -30,7 +30,7 @@ Usage
 ```js
  var array = [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" }];
  
- var selectedArr = lambda.select(arr, ['FirstName', 'State']);
+ var selectedArr = lambda.select(array, ['FirstName', 'State']);
  
  //Output
  // [{ "FirstName": "John", "State": "CA" }];
@@ -41,7 +41,7 @@ Usage
  var array = [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" }, 
  { "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }];
  
- var selectedArr = lambda.first(arr);
+ var selectedArr = lambda.first(array);
  
  //Output
  // [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" }];
@@ -54,7 +54,7 @@ Usage
  { "FirstName": "David", "LastName": "Ken", "Age": 25, "State": "NY" }, 
  { "FirstName": "Hugo", "LastName": "Boss", "Age": 25, "State": "NY" }];
  
- var selectedArr = lambda.where({ Age: 25 });
+ var selectedArr = lambda.where(array, { Age: 25 });
  
  //Output
  // [{ "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }, 
