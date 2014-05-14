@@ -1,4 +1,4 @@
-function testFirst() {
+function testWhereAction() {
     var lambda = require('../src/lambda.dev.js');
     if (!lambda) throw "lambda is undefined";
     var arr = [{
@@ -17,8 +17,8 @@ function testFirst() {
         Age: 24,
         Gender: "Female"
     }];
-    
-    return lambda.first(arr);
+
+    return lambda.where(arr, { FirstName: "Arun" });
 }
 
-console.log(testFirst());
+console.log(testWhereAction());
