@@ -69,8 +69,8 @@
             //Basic validations.
             if (!arr) lambda.exception.throwEx("Array is undefined");
             if (!props) props = [];
-            if (!arr.length && typeof (arr) == 'object') lambda.exception.throwEx("'arr' parameter must be of type Array");
-            if (!props.length && typeof (props) == 'object') lambda.exception.throwEx("'props' parameter must be of type Array");
+            if (!arr.hasOwnProperty("length") && typeof (arr) == 'object') lambda.exception.throwEx("'arr' parameter must be of type Array");
+            if (!props.hasOwnProperty("length") && typeof (props) == 'object') lambda.exception.throwEx("'props' parameter must be of type Array");
 
             arrLength = arr.length;
             propLength = props.length;
@@ -104,7 +104,7 @@
         _first: function (arr) {
             //Basic validations.
             if (!arr) lambda.exception.throwEx("Array is undefined");
-            if (!arr.length && typeof (arr) == 'object') lambda.exception.throwEx("'arr' parameter must be of type Array");
+            if (!arr.hasOwnProperty("length") && typeof (arr) == 'object') lambda.exception.throwEx("'arr' parameter must be of type Array");
             if (arr.length > 0) {
                 return arr[0];
             }
@@ -114,7 +114,7 @@
         _where: function (arr, query) {
             var me = this;
             if (!arr) lambda.exception.throwEx("Array is undefined");
-            if (!arr.length && typeof (arr) == 'object') lambda.exception.throwEx("'arr' parameter must be of type Array");
+            if (!arr.hasOwnProperty("length") && typeof (arr) == 'object') lambda.exception.throwEx("'arr' parameter must be of type Array");
             if (!query) lambda.exception.throwEx("'query' is undefined");
             if (typeof (query) != "object") lambda.exception.throwEx("'query' parameter must be of type 'object'");
             var i = 0, j, arrLength = arr.length, result = [];
@@ -191,7 +191,7 @@
     lambda.first = actionsList.first;
     lambda.where = actionsList.where;
 
-    if (module) {
+    if (typeof module != 'undefined') {
         module.exports = lambda;
     }
 })();
