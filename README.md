@@ -18,7 +18,6 @@ Include the `lambda.js` to your page.
 TODO
 ---------------
 **Where**
- - support "or", "and" operations.
  - support "like" operation.
 
 
@@ -60,4 +59,73 @@ Usage
  // [{ "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }, 
  // { "FirstName": "David", "LastName": "Ken", "Age": 25, "State": "NY" }, 
  // { "FirstName": "Hugo", "LastName": "Boss", "Age": 25, "State": "NY" }];
+```
+
+**Where** - **OR**
+```js
+var query = lambda.query; //Query object
+var array = [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" }, 
+ { "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }, 
+ { "FirstName": "David", "LastName": "Ken", "Age": 25, "State": "NY" }, 
+ { "FirstName": "Hugo", "LastName": "Boss", "Age": 25, "State": "CA" }];
+ //Adding "or" clause to query object.
+ query.add({
+     or: {
+         Age: 25,
+         State: "NY"
+     }
+ });
+ var result = lambda.where(array, query);
+ 
+ //Output
+ //[{ FirstName: 'Emily', LastName: 'J', Age: 25, State: 'NY' },
+ // { FirstName: 'David', LastName: 'Ken', Age: 25, State: 'NY' },
+ // { FirstName: 'Hugo', LastName: 'Boss', Age: 25, State: 'CA' }]
+```
+
+**Where** - **AND**
+```js
+var query = lambda.query; //Query object
+var array = [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" }, 
+ { "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }, 
+ { "FirstName": "David", "LastName": "Ken", "Age": 25, "State": "NY" }, 
+ { "FirstName": "Hugo", "LastName": "Boss", "Age": 25, "State": "CA" }];
+ //Adding "and" clause to query object.
+ query.add({
+     and: {
+         Age: 25,
+         State: "NY"
+     }
+ });
+ var result = lambda.where(array, query);
+ 
+ //Output
+ //[{ "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }, 
+ // { "FirstName": "David", "LastName": "Ken", "Age": 25, "State": "NY" }]
+```
+
+**Where** - Combination of AND & OR
+```js
+var query = lambda.query; //Query object
+var array = [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" }, 
+ { "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }, 
+ { "FirstName": "David", "LastName": "Ken", "Age": 25, "State": "NY" }, 
+ { "FirstName": "Hugo", "LastName": "Boss", "Age": 25, "State": "CA" }];
+ //Adding "and" clause to query object.
+ query.add({
+    or: {
+        Age: 25,
+        State: "CA"
+    }
+ }).add({
+     and: {
+         Age: 25,
+         State: "NY"
+     }
+ });
+ var result = lambda.where(array, query);
+ 
+ //Output
+ //[{ "FirstName": "Emily", "LastName": "J", "Age": 25, "State": "NY" }, 
+ // { "FirstName": "David", "LastName": "Ken", "Age": 25, "State": "NY" }]
 ```
