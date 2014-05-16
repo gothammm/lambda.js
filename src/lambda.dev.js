@@ -31,9 +31,11 @@
         }
     };
     lambda._query = {
-        or: false,
-        and: false,
-        expression: [],
+        add: function (obj) {
+            this.conditions.push(obj);
+            return this;
+        },
+        conditions: [],
         type: {
             name: "query",
             hex: "7175657279"
@@ -55,6 +57,7 @@
             return false;
         }
     };
+    lambda.query = lambda._query;
     lambda._actions = {
         _select: function (arr, props) {
             var i = 0,
@@ -132,7 +135,77 @@
                     }
                 }
             }
+            else {
+                //Extracting each kind of condition;
+                var conditions = query.conditions;
+                var conditionsLength = conditions.length;
+                for (; i < conditionsLength; i++) {
+                    var condition = conditions[i];
+                    var mapKeyValue = lambda.first(lambda._util.mapKeyValue(condition));
+                    var type = mapKeyValue.key;
+                    var queryBy = mapKeyValue.value;
+                    var isResultFilled = result.length > 0 ? true : false;
+                    var arrContent = isResultFilled ? result : arr;
+                    switch (type) {
+                        case "or":
+                            result = me._actions._where_or(arrContent, queryBy);
+                            break;
+                        case "and":
+                            result = me._actions._where_and(arrContent, queryBy);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
             return result;
+        },
+        _where_and: function (arr, obj) {
+            var tmpResult = [];
+            var i = 0, j;
+            var conditionkeyValue = lambda._util.mapKeyValue(obj);
+            var arrLength = arr.length, conditionLength = conditionkeyValue.length;
+            for (; i < arrLength; i++) {
+                var arrObj = arr[i];
+                var isFound = false;
+                var andSatisfy = true;
+                for (j = 0; j < conditionLength; j++) {
+                    var prop = conditionkeyValue[j];
+                    if (arrObj[prop.key] && arrObj[prop.key] == prop.value) {
+                        if (andSatisfy) {
+                            isFound = true;
+                        }
+                    }
+                    else {
+                        isFound = false;
+                        andSatisfy = false;
+                    }
+                }
+                if (isFound) {
+                    tmpResult.push(arrObj);
+                }
+            }
+            return tmpResult;
+        },
+        _where_or: function (arr, obj) {
+            var tmpResult = [];
+            var i = 0, j;
+            var conditionkeyValue = lambda._util.mapKeyValue(obj);
+            var arrLength = arr.length, conditionLength = conditionkeyValue.length;
+            for (; i < arrLength; i++) {
+                var arrObj = arr[i];
+                var isFound = false;
+                for (j = 0; j < conditionLength; j++) {
+                    var prop = conditionkeyValue[j];
+                    if (arrObj[prop.key] && arrObj[prop.key] == prop.value) {
+                        isFound = true;
+                    }
+                }
+                if (isFound) {
+                    tmpResult.push(arrObj);
+                }
+            }
+            return tmpResult;
         },
         _getActions: function () {
             var me = this;
