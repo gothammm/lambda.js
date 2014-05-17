@@ -10,10 +10,14 @@ var array = [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" },
      or: {
          Age: 25,
          State: "NY"
+     }, and: {
+         Age: 25,
+         State: "NY"
      }
- }).add({ and: {
-     Age: 25,
-     State: "NY"
- }
+ }).add({
+     or: {
+         Age: 25,
+         FirstName: "Hugo"
+     }
  });
  var result = lambda.where(array, query);

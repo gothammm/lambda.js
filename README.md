@@ -116,6 +116,10 @@ var array = [{ "FirstName": "John", "LastName": "H", "Age": 24, "State": "CA" },
     or: {
         Age: 25,
         State: "CA"
+    }, 
+    and: {
+        Age: 25,
+        State: "NY"
     }
  }).add({
      and: {

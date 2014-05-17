@@ -32,7 +32,13 @@
     };
     lambda._query = {
         add: function (obj) {
-            this.conditions.push(obj);
+            var mapKeyValue = lambda._util.mapKeyValue(obj);
+            for (var i = 0; i < mapKeyValue.length; i++) {
+                var conditionObj = mapKeyValue[i];
+                var pushObj = {};
+                pushObj[conditionObj.key] = conditionObj.value;
+                this.conditions.push(pushObj);
+            }
             return this;
         },
         conditions: [],
