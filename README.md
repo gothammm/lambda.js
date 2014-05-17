@@ -19,6 +19,8 @@ TODO
 ---------------
 **Where**
  - support "like" operation.
+ - support grouping.
+ - support sorting.
 
 
 Usage
