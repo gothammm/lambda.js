@@ -159,12 +159,29 @@
                         case "and":
                             result = me._actions._where_and(arrContent, queryBy);
                             break;
+                        case "like":
+                            result = me._actions._where_like(arrContent, queryBy);
+                            break;
                         default:
                             break;
                     }
                 }
             }
             return result;
+        },
+        _where_like: function (arr, obj) {
+            var tmpResult = [];
+            var i = 0, j;
+            var conditionkeyValue = lambda._util.mapKeyValue(obj);
+            obj = lambda.first(conditionkeyValue);
+            var arrLength = arr.length;
+            for (; i < arrLength; i++) {
+                var arrObj = arr[i];
+                if (typeof obj.value != "number" && arrObj[obj.key] && arrObj[obj.key].indexOf(obj.value) > -1) {
+                    tmpResult.push(arrObj);
+                }
+            }
+            return tmpResult;
         },
         _where_and: function (arr, obj) {
             var tmpResult = [];
