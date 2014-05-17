@@ -18,7 +18,6 @@ Include the `lambda.js` to your page.
 TODO
 ---------------
 **Where**
- - support "like" operation.
  - support grouping.
  - support sorting.
 
