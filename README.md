@@ -3,7 +3,7 @@ Lambda.js
 
 Lambda.js is a JavaScript version of "C# Lambda Expressions in Querying", used for querying array objects.
 
-**Current Version:** *v0.1*
+**Current Version:** *v1.0*
 
 
 Getting Started

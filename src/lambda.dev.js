@@ -1,3 +1,6 @@
+//Lambda.js
+//Version: v1.0
+//Author: Gautham R
 (function () {
     var global = this;
     global.lambda = {};
@@ -135,7 +138,7 @@
                     if (arrObj) {
                         var key = keyValue.key;
                         var value = keyValue.value;
-                        if (arrObj[key] && arrObj[key] == value) {
+                        if (arrObj[key] != null && arrObj[key] != undefined && arrObj[key] == value) {
                             result.push(arrObj);
                         }
                     }
@@ -177,7 +180,7 @@
             var arrLength = arr.length;
             for (; i < arrLength; i++) {
                 var arrObj = arr[i];
-                if (typeof obj.value != "number" && arrObj[obj.key] && arrObj[obj.key].indexOf(obj.value) > -1) {
+                if (typeof obj.value != "number" && arrObj[obj.key] != null && arrObj[obj.key] != undefined && arrObj[obj.key].indexOf(obj.value) > -1) {
                     tmpResult.push(arrObj);
                 }
             }
@@ -194,7 +197,7 @@
                 var andSatisfy = true;
                 for (j = 0; j < conditionLength; j++) {
                     var prop = conditionkeyValue[j];
-                    if (arrObj[prop.key] && arrObj[prop.key] == prop.value) {
+                    if (arrObj[prop.key] != null && arrObj[prop.key] !=  undefined  && arrObj[prop.key] == prop.value) {
                         if (andSatisfy) {
                             isFound = true;
                         }
@@ -220,7 +223,7 @@
                 var isFound = false;
                 for (j = 0; j < conditionLength; j++) {
                     var prop = conditionkeyValue[j];
-                    if (arrObj[prop.key] && arrObj[prop.key] == prop.value) {
+                    if (arrObj[prop.key] != null && arrObj[prop.key] != undefined && arrObj[prop.key] == prop.value) {
                         isFound = true;
                     }
                 }
